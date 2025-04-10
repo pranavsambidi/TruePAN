@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Document Verification</title>
+<link rel="icon" type="image/jpg" href="{{ url_for('static', filename='tracking.jpg') }}">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body {
+    background: linear-gradient(135deg, #d9e4f5, #f1f5f9);
+    font-family: 'Poppins', sans-serif;
+    padding: 30px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+.caption {
+    text-align: center;
+    font-size: 1.7rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.description {
+    text-align: center;
+    margin-top: -15px;
+    margin-bottom: 25px;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+form {
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+label {
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    border: none;
+    padding: 10px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    border-radius: 10px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+}
+
+.image-container {
+    max-width: 450px;
+    margin: 40px auto 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-container img:hover {
+    transform: scale(1.03);
+}
+
+.result-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    margin-top: 30px;
+    color: #0f172a;
+}
+
+.result-label {
+    font-weight: 600;
+    color: #111827;
+}
+.result-message {
+    font-weight: 500;
+}
+</style>
+</head>
+<body>
+
+<h1>TruePAN</h1>
+<div class="caption">Reliable PAN Card Verification</div>
+<p class="description">Upload your PAN card below and get instant verification results.</p>
+
+<form action="/process_image" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="image">Upload Image:</label>
+        <input type="file" class="form-control" name="image" accept="image/*" required />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Verify Document</button>
+</form>
+
+{% if show_image %}
+<div class="image-container">
+    <img src="{{ url_for('static', filename='image/user_upload.jpg') }}?v={{ cache_buster }}" alt="Uploaded Image" />
+</div>
+{% endif %}
+
+{% if result_message %}
+<div class="result-row">
+    <span class="result-label">Result:</span>
+    <span class="result-message">{{ result_message }}</span>
+</div>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
