@@ -1,7 +1,8 @@
-flask
-opencv-python
+Flask
+gunicorn
 ultralytics
+opencv-python
 easyocr
 tensorflow
-keras
 numpy
+keras
