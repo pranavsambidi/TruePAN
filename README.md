@@ -32,7 +32,7 @@ This application leverages YOLO for object detection, EasyOCR for text extractio
 
 ```bash
 git clone https://github.com/pranavsambidi/TruePAN.git
-cd TruePAN
+cd docverify
 ```
 
 # 2. Install Dependencies
@@ -56,7 +56,7 @@ Go to `http://localhost:5000` to view the app in your browser.
 # 📁 Project Structure
 
 ```
-TruePAN/
+docverify/
 ├── static/
 │   ├── image/                  # Uploaded image folder
 │   └── tracking.jpg            # Favicon
